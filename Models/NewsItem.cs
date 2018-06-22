@@ -14,5 +14,6 @@ namespace news_feed_reader.Models
         public string ThumbnailURL { get; set; }
         public string Category { get; set; }
         public string Provider { get; set; }
+        public int ProviderId { get; set; }
     }
 }
