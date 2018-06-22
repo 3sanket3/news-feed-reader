@@ -12,5 +12,7 @@ namespace news_feed_reader.Models
         public string WebsiteURL { get; set; }
         public string LogoURL { get; set; }
         public string RssFeedURL { get; set; }
+        public bool isSubscribed { get; set; }
+
     }
 }

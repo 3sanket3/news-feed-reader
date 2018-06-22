@@ -26,11 +26,15 @@
   <ItemGroup>
     <None Remove="ClientApp\components\NewsFeedItem - Copy.tsx" />
     <None Remove="ClientApp\components\NewsFeedItem.tsx" />
+    <None Remove="ClientApp\components\NewsProvidersList.tsx" />
+    <None Remove="ClientApp\components\SubscribedFeeds.tsx" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\components\NewsFeedItem - Copy.tsx" />
     <TypeScriptCompile Include="ClientApp\components\NewsFeedItem.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\NewsProvidersList.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\SubscribedFeeds.tsx" />
   </ItemGroup>
 
   <ItemGroup>

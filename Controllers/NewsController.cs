@@ -13,15 +13,24 @@ namespace news_feed_reader.Controllers
     public class NewsController : Controller
     {
         [HttpGet("[action]")]
-        public object Get()
+        public object Get(bool onlySubsscribed)
         {
             WebClient wclient = new WebClient();
             
             NewsFeedContext db = new NewsFeedContext();
+            List<NewsFeedProvider> lstProviders = new List<NewsFeedProvider>();
+            if (onlySubsscribed)
+            {
+                lstProviders = db.NewsFeedProviders.Where(prov => prov.isSubscribed == true).ToList() ;
+            }
+            else
+            {
+                lstProviders = db.NewsFeedProviders.ToList();
+            }
 
             List<NewsItem> allNewsItems = new List<NewsItem>();
 
-            foreach (var provider in db.NewsFeedProviders)
+            foreach (var provider in lstProviders)
             {
                 string RSSData = wclient.DownloadString(provider.RssFeedURL);
 

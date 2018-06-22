@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using news_feed_reader.Models;
 
 namespace newsfeedreader.Migrations
 {
     [DbContext(typeof(NewsFeedContext))]
-    partial class NewsFeedContextModelSnapshot : ModelSnapshot
+    [Migration("20180622082255_RemoveSubscriptionTable")]
+    partial class RemoveSubscriptionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
