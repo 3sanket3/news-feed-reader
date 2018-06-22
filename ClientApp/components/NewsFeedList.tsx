@@ -46,9 +46,13 @@ export class NewsFeedList extends React.Component<
   };
 
   handleChange = (event : any)=>{
-    this.setState({searchTerm: event.target.value});
-    let searchedItems = this.backupFeeds.filter(feed=> (feed.title as string).toLowerCase().indexOf(this.state.searchTerm.toLowerCase())>=0);
-    this.setState({feedItmes: searchedItems});
+    this.setState({searchTerm: event.target.value},()=>{
+        if(!this.state.searchTerm){
+            this.setState({feedItmes: this.backupFeeds});
+        }
+    });
+    
+   
   }
   handleSubmit = (event :any)=>{
     let searchedItems = this.backupFeeds.filter(feed=> (feed.title as string).toLowerCase().indexOf(this.state.searchTerm.toLowerCase())>=0);
@@ -78,7 +82,6 @@ export class NewsFeedList extends React.Component<
 
         {this.state.feedItmes && this.state.feedItmes.length
           ? 
-          
           
           this.state.feedItmes.map((feedItem, index) => (
               <NewsFeedItem

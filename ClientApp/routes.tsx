@@ -7,7 +7,7 @@ import { Counter } from "./components/Counter";
 import { NewsProvidersList } from "./components/NewsProvidersList";
 
 export const routes = (
-  <Layout>
+  <Layout>    
     <Route
       exact
       path="/"

@@ -19,17 +19,17 @@ export class NavMenu extends React.Component<{}, {}> {
                     <ul className='nav navbar-nav'>
                         <li>
                             <NavLink to={ '/' } exact activeClassName='active'>
-                                <span className='glyphicon glyphicon-home'></span> Home
+                                <span className='glyphicon glyphicon-book'></span> Home
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to={ '/all-feeds' } activeClassName='active'>
-                                <span className='glyphicon glyphicon-education'></span> All Feeds
+                                <span className='glyphicon glyphicon-folder-open'></span> All Feeds
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to={ '/providers' } activeClassName='active'>
-                                <span className='glyphicon glyphicon-education'></span> News Providers
+                                <span className='glyphicon glyphicon-globe'></span> News Providers
                             </NavLink>
                         </li>
                     </ul>
