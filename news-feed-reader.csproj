@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\components\NewsFeedItem - Copy.tsx" />
     <TypeScriptCompile Include="ClientApp\components\NewsFeedItem.tsx" />
     <TypeScriptCompile Include="ClientApp\components\NewsProvidersList.tsx" />
     <TypeScriptCompile Include="ClientApp\components\SubscribedFeeds.tsx" />

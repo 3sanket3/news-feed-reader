@@ -2,8 +2,6 @@ import * as React from "react";
 import { Route, NavLink } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { NewsFeedList } from "./components/NewsFeedList";
-import { FetchData } from "./components/FetchData";
-import { Counter } from "./components/Counter";
 import { NewsProvidersList } from "./components/NewsProvidersList";
 
 export const routes = (
@@ -44,6 +42,6 @@ export const routes = (
       )}
     />
     <Route path="/providers" component={NewsProvidersList} />
-    <Route path="/fetchdata" component={FetchData} />
+   
   </Layout>
 );
