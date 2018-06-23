@@ -15,7 +15,8 @@ export class NewsFeedList extends React.Component<
   state = {
     feedItmes: [],
     apiResponded: false /*renderIfNoItemsFound should not be called if api is yet to respond */,
-    searchTerm: ""
+    searchTerm: "",
+    errorOccured: false
   };
 
   backupFeeds: Array<any> = [];
@@ -39,10 +40,15 @@ export class NewsFeedList extends React.Component<
 
     fetch(url)
       .then(response => response.json() as Promise<any[]>)
-      .then(data => {
-        this.setState({ feedItmes: data, apiResponded: true });
-        this.backupFeeds = [...this.state.feedItmes];
-      });
+      .then(
+        data => {
+          this.setState({ feedItmes: data, apiResponded: true });
+          this.backupFeeds = [...this.state.feedItmes];
+        },
+        error => {
+          this.setState({ errorOccured: true });
+        }
+      );
   };
 
   handleChange = (event: any) => {
@@ -66,7 +72,12 @@ export class NewsFeedList extends React.Component<
     console.log("backupFeeds.length" + this.backupFeeds.length);
     return (
       <div>
-        {(this.state.feedItmes && this.state.feedItmes.length) || this.state.searchTerm ? (
+        {this.state.errorOccured ? (
+          <div>Error Occured while fetching data</div>
+        ) : null}
+
+        {(this.state.feedItmes && this.state.feedItmes.length) ||
+        this.state.searchTerm ? (
           <div className="main-content-header">
             <form onSubmit={this.handleSubmit}>
               <input
@@ -80,6 +91,7 @@ export class NewsFeedList extends React.Component<
             </form>
           </div>
         ) : null}
+
         {this.state.feedItmes && this.state.feedItmes.length ? (
           <div>
             {this.state.feedItmes.map((feedItem, index) => (
