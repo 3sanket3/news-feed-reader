@@ -97,7 +97,7 @@ export class NewsFeedList extends React.Component<
           this.props.renderIfNoItemsFound()
         )}
         {
-            !this.state.apiResponded ? (<div className="text-center font-x-large"> ⏳ Pulling feeds... ⏳ </div>) : null
+            !this.state.apiResponded ? (<div className="text-center font-x-large"> ⏳ Fetching feeds... ⏳ </div>) : null
         }
       </div>
     );
