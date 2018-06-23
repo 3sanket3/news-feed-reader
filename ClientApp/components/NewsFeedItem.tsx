@@ -35,7 +35,7 @@ export class NewsFeedItem extends React.Component<
             - <NavLink to={`/provider/${providerId}`}>{provider}</NavLink>
           </span>
           <div className="item-details">
-            <img
+            <img 
               src={thumbnailURL}
               alt="feed-item-thumbnail"
               height="100px"

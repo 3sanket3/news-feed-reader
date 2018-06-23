@@ -14,11 +14,11 @@ export class NewsFeedList extends React.Component<
 
   state = {
     feedItmes: [],
-    apiResponded: false, /*renderIfNoItemsFound should not be called if api is yet to respond */
-    searchTerm: ''
+    apiResponded: false /*renderIfNoItemsFound should not be called if api is yet to respond */,
+    searchTerm: ""
   };
 
-  backupFeeds : Array<any> =[];
+  backupFeeds: Array<any> = [];
   componentDidMount() {
     console.log("onlySubscribed " + this.props.onlySubscribed);
     this.getAllFeeds();
@@ -40,59 +40,60 @@ export class NewsFeedList extends React.Component<
     fetch(url)
       .then(response => response.json() as Promise<any[]>)
       .then(data => {
-          this.setState({ feedItmes: data, apiResponded: true });
-          this.backupFeeds = [...this.state.feedItmes];
+        this.setState({ feedItmes: data, apiResponded: true });
+        this.backupFeeds = [...this.state.feedItmes];
       });
   };
 
-  handleChange = (event : any)=>{
-    this.setState({searchTerm: event.target.value},()=>{
-        if(!this.state.searchTerm){
-            this.setState({feedItmes: this.backupFeeds});
-        }
+  handleChange = (event: any) => {
+    this.setState({ searchTerm: event.target.value }, () => {
+      if (!this.state.searchTerm) {
+        this.setState({ feedItmes: this.backupFeeds });
+      }
     });
-    
-   
-  }
-  handleSubmit = (event :any)=>{
-    let searchedItems = this.backupFeeds.filter(feed=> (feed.title as string).toLowerCase().indexOf(this.state.searchTerm.toLowerCase())>=0);
-    this.setState({feedItmes: searchedItems});
+  };
+  handleSubmit = (event: any) => {
+    let searchedItems = this.backupFeeds.filter(
+      feed =>
+        (feed.title as string)
+          .toLowerCase()
+          .indexOf(this.state.searchTerm.toLowerCase()) >= 0
+    );
+    this.setState({ feedItmes: searchedItems });
     event.preventDefault();
-  }
+  };
   public render() {
-   
     return (
       <div>
-       <div className="main-content-header">
-         
-         <form onSubmit={this.handleSubmit}>
-          
-             <input
-               type="text"
-               value={this.state.searchTerm}
-               onChange={this.handleChange}
-               placeholder="Search"
-             />
-         
-           <input type="submit" value="Submit" />
-         </form>
-       </div>
+        {this.state.feedItmes && this.state.feedItmes.length ? (
+          <div>
+            <div className="main-content-header">
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  type="text"
+                  value={this.state.searchTerm}
+                  onChange={this.handleChange}
+                  placeholder="Search"
+                />
 
-
-
-        {this.state.feedItmes && this.state.feedItmes.length
-          ? 
-          
-          this.state.feedItmes.map((feedItem, index) => (
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
+            {this.state.feedItmes.map((feedItem, index) => (
               <NewsFeedItem
                 data={feedItem}
                 key={index}
                 {...{} as RouteComponentProps<any>}
               />
-            ))
-          : this.state.apiResponded &&
-            this.props.renderIfNoItemsFound &&
-            this.props.renderIfNoItemsFound()}
+            ))}
+          </div>
+        ) : (
+        
+          this.state.apiResponded &&
+          !this.state.searchTerm &&
+          this.props.renderIfNoItemsFound &&
+          this.props.renderIfNoItemsFound()
+        )}
       </div>
     );
   }

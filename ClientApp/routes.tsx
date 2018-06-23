@@ -7,7 +7,7 @@ import { Counter } from "./components/Counter";
 import { NewsProvidersList } from "./components/NewsProvidersList";
 
 export const routes = (
-  <Layout>    
+  <Layout>
     <Route
       exact
       path="/"
@@ -15,11 +15,22 @@ export const routes = (
         <NewsFeedList
           onlySubscribed
           renderIfNoItemsFound={() => (
-            <h3>
-              Welcome, subscribe some of the <NavLink to={"/providers"} activeClassName="active"> News Providers </NavLink>
-               to make this Home, <i>your own</i>. You can always check feeds from all
-              providers at <NavLink to={"/all-feeds"} activeClassName="active"> All Feeds </NavLink>
-            </h3>
+            <div className="text-center vertically-centered-content font-x-large">
+              <p>Welcome <span > 🎉</span>,</p>
+              <p>
+                Subscribe some of the {" "}
+                <NavLink to={"/providers"} activeClassName="active">
+                  News Providers 📰
+                </NavLink>
+                {" "} to make this Home, <i>your own </i> 🏠.
+              </p>
+              <p>
+                You can always check feeds from all providers at {" "}
+                <NavLink to={"/all-feeds"} activeClassName="active">
+                  All Feeds 📚
+                </NavLink>
+              </p>
+            </div>
           )}
         />
       )}
