@@ -63,22 +63,25 @@ export class NewsFeedList extends React.Component<
     event.preventDefault();
   };
   public render() {
+    console.log("backupFeeds.length" + this.backupFeeds.length);
     return (
       <div>
+        {(this.state.feedItmes && this.state.feedItmes.length) || this.state.searchTerm ? (
+          <div className="main-content-header">
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                value={this.state.searchTerm}
+                onChange={this.handleChange}
+                placeholder="Search"
+              />
+
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+        ) : null}
         {this.state.feedItmes && this.state.feedItmes.length ? (
           <div>
-            <div className="main-content-header">
-              <form onSubmit={this.handleSubmit}>
-                <input
-                  type="text"
-                  value={this.state.searchTerm}
-                  onChange={this.handleChange}
-                  placeholder="Search"
-                />
-
-                <input type="submit" value="Submit" />
-              </form>
-            </div>
             {this.state.feedItmes.map((feedItem, index) => (
               <NewsFeedItem
                 data={feedItem}
@@ -88,9 +91,8 @@ export class NewsFeedList extends React.Component<
             ))}
           </div>
         ) : (
-        
           this.state.apiResponded &&
-          !this.state.searchTerm &&
+          !this.backupFeeds.length &&
           this.props.renderIfNoItemsFound &&
           this.props.renderIfNoItemsFound()
         )}
